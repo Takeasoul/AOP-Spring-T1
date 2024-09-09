@@ -19,4 +19,13 @@ logging:
       springframework:
         web: DEBUG
         security: DEBUG
-
+    example:
+      aop:
+        aspect:
+          LoggingAspect: DEBUG
+    hibernate:
+      SQL: DEBUG
+      type:
+        descriptor:
+          sql:
+            BasicBinder: TRACE

@@ -4,6 +4,7 @@ package org.example.web.controllers;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.example.services.MethodsStatisticsService;
 import org.example.services.impl.MethodsStatisticsServiceImpl;
 import org.example.web.DTO.response.MethodsTimeResponse;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ import java.util.List;
 @RequestMapping("/statistics")
 public class MethodsStatisticController {
 
-        private final MethodsStatisticsServiceImpl statisticsService;
+        private final MethodsStatisticsService statisticsService;
 
         @Operation(summary = "Получить среднее время выполнения всех методов помеченными аннотациями @TrackTime и @TrackAsyncTime")
         @GetMapping("/average-execution-time-methods")

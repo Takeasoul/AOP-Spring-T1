@@ -3,6 +3,7 @@ package org.example.services.impl;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.aop.annotation.Logging;
 import org.example.aop.annotation.TrackAsyncTime;
 import org.example.aop.annotation.TrackTime;
 import org.example.entity.Event;
@@ -34,9 +35,10 @@ public class EventServiceImpl implements EventService {
 
     private final EventRepository repository;
 
+    @Override
+    @Logging
     @TrackAsyncTime
     @Transactional
-    @Override
     @Async
     public CompletableFuture<ModelListResponse<EventResponse>> findAll(Pageable pageable) {
         log.info("Find all events");
@@ -49,6 +51,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    @Logging
     @TrackTime
     @Transactional
     public EventResponse findById(UUID id) {
@@ -61,6 +64,7 @@ public class EventServiceImpl implements EventService {
 
 
     @Override
+    @Logging
     @Transactional
     public EventResponse create(EventRequest entityRequest) {
         log.info("Create event {}",entityRequest);
@@ -70,6 +74,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    @Logging
     @Transactional
     public EventResponse update(UUID uuid, EventRequest entityRequest) {
         Event event = eventMapper.requestToEvent(entityRequest);
@@ -80,6 +85,7 @@ public class EventServiceImpl implements EventService {
 
 
     @Override
+    @Logging
     @Transactional
     public void deleteById(UUID id) {
         log.info("Delete event with ID: {}", id);

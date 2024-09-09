@@ -3,6 +3,7 @@ package org.example.services.impl;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.aop.annotation.Logging;
 import org.example.aop.annotation.TrackAsyncTime;
 import org.example.aop.annotation.TrackTime;
 import org.example.entity.EventMember;
@@ -33,6 +34,7 @@ public class EventMemberServiceImpl implements EventMembersService {
     private final EventMemberRepository repository;
 
     @Override
+    @Logging
     @TrackAsyncTime
     @Transactional
     @Async
@@ -46,6 +48,7 @@ public class EventMemberServiceImpl implements EventMembersService {
     }
 
     @Override
+    @Logging
     @TrackTime
     @Transactional
     public EventMemberResponse findById(UUID id) {
@@ -57,6 +60,7 @@ public class EventMemberServiceImpl implements EventMembersService {
     }
 
     @Override
+    @Logging
     public EventMemberResponse create(EventMemberRequest entityRequest) {
         log.info("Create event member {}",entityRequest);
         EventMember eventMember = eventMemberMapper.requestToEventMember(entityRequest);
@@ -72,12 +76,14 @@ public class EventMemberServiceImpl implements EventMembersService {
 
 
     @Override
+    @Logging
     public void deleteById(UUID id) {
         log.info("Delete event member with ID: {}", id);
         repository.deleteById(id);
     }
 
     @Override
+    @Logging
     @Transactional
     public EventMemberResponse update(UUID uuid, EventMemberRequest entityRequest) {
         EventMember member = eventMemberMapper.requestToEventMember(entityRequest);

@@ -6,6 +6,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.example.services.MethodsTimeTrackService;
 import org.example.services.impl.MethodsTimeTrackServiceImpl;
 import org.springframework.stereotype.Component;
 import org.example.aop.annotation.TrackTime;
@@ -19,7 +20,7 @@ import java.util.concurrent.CompletableFuture;
 @RequiredArgsConstructor
 public class TimeTrackingAspect {
 
-    private final MethodsTimeTrackServiceImpl methodsTimeTrackService;
+    private final MethodsTimeTrackService methodsTimeTrackService;
 
     @Pointcut("@annotation(org.example.aop.annotation.TrackTime)")
     public void hasTrackTime() {

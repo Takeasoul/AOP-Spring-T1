@@ -18,7 +18,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @Tag(name = "ExecutionTimeStatistic", description = "Статистика времени выполнения методов")
-@RequestMapping("/statistics")
+@RequestMapping("api/v1/statistics")
 public class MethodsStatisticController {
 
         private final MethodsStatisticsService statisticsService;

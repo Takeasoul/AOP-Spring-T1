@@ -4,12 +4,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.entity.ErrorLog;
 import org.example.repositories.ErrorLogRepository;
-import org.example.repositories.MethodsTimeTrackRepository;
 import org.example.services.ErrorLogService;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,6 +18,7 @@ import java.util.Optional;
 public class ErrorLogServiceImpl implements ErrorLogService {
 
     private final ErrorLogRepository errorLogRepository;
+
 
     @Transactional
     @Async
@@ -35,6 +36,11 @@ public class ErrorLogServiceImpl implements ErrorLogService {
             newErrorLog.setErrorCount(1);
             errorLogRepository.save(newErrorLog);
         }
+    }
+
+    @Override
+    public List<ErrorLog> getErrorLog() {
+        return errorLogRepository.findAll();
     }
 
 }

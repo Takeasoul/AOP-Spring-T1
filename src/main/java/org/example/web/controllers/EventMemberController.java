@@ -1,5 +1,6 @@
 package org.example.web.controllers;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.example.services.EventMembersService;
 import org.example.web.DTO.request.EventMemberRequest;
@@ -20,6 +21,7 @@ import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequiredArgsConstructor
+@Tag(name = "Events-members", description = "Участники")
 @RequestMapping(path="api/v1/event-members",produces = "application/json")
 @CrossOrigin()
 public class EventMemberController {
